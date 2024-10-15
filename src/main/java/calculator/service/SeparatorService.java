@@ -7,7 +7,7 @@ import java.util.Set;
 
 public interface SeparatorService {
 
-    List<Num> SeparateNum(String input, String separatorString);
+    List<Num> separateNum(String input, String separatorString);
 
     Set<Separator> getCustomSeparators(String input);
 
