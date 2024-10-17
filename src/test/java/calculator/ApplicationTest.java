@@ -47,6 +47,15 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    @DisplayName("숫자 구문자 테스트2")
+    void test2_2() {
+        assertSimpleTest(() -> {
+            run("//5\\n151515");
+            assertThat(output()).contains("결과 : 3");
+        });
+    }
+
+    @Test
     @DisplayName("커스텀 구문자 판단들을 모두 허용")
     void test3() {
         assertSimpleTest(() -> {
@@ -137,6 +146,52 @@ class ApplicationTest extends NsTest {
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
+
+    @Test
+    @DisplayName("예외 테스트 : 커스텀 구문자에 문자열 테스트")
+    void exceptionTest5() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("//aa\\n"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    @DisplayName("예외 테스트 : 음수값 테스트")
+    void exceptionTest6() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("-1,-2,-3"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    @DisplayName("예외 테스트 : 특수문자 \\t")
+    void exceptionTest7() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("\t"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    @DisplayName("예외 테스트 : 특수문자 \\b")
+    void exceptionTest9() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("\b"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    @DisplayName("예외 테스트 : 특수문자 \\0")
+    void exceptionTest10() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("\0"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
 
     @Override
     public void runMain() {
