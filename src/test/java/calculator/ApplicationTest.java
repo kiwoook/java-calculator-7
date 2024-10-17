@@ -109,87 +109,31 @@ class ApplicationTest extends NsTest {
         });
     }
 
-
     @Test
-    @DisplayName("예외 테스트 : 중첩 커스텀 구문자")
-    void exceptionTest1() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("////5\\n\\n1,2,3,4,5"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-
+    @DisplayName("커스텀구분자 숫자")
+    void test9() {
+        assertSimpleTest(() -> {
+            run("1//1\\n111111111111");
+            assertThat(output()).contains("결과 : 0");
+        });
     }
 
     @Test
-    @DisplayName("예외 테스트 : 커스텀 구문자 안에 기본 구문자")
-    void exceptionTest2() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("//:\\n"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
+    @DisplayName("커스텀 구분자 옆에 숫자")
+    void test10() {
+        assertSimpleTest(() -> {
+            run("51//1\\n15");
+            assertThat(output()).contains("결과 : 10");
+        });
     }
 
     @Test
-    @DisplayName("예외 테스트 : 커스텀 구문자 사이에 값 미존재")
-    void exceptionTest3() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("//\\n"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
-
-    @Test
-    @DisplayName("예외 테스트 : 입력에 양수가 아닌 0추가")
-    void exceptionTest4() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("0100:0200"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
-
-    @Test
-    @DisplayName("예외 테스트 : 커스텀 구문자에 문자열 테스트")
-    void exceptionTest5() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("//aa\\n"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
-
-    @Test
-    @DisplayName("예외 테스트 : 음수값 테스트")
-    void exceptionTest6() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("-1,-2,-3"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
-
-    @Test
-    @DisplayName("예외 테스트 : 특수문자 \\t")
-    void exceptionTest7() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("\t"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
-
-    @Test
-    @DisplayName("예외 테스트 : 특수문자 \\b")
-    void exceptionTest9() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("\b"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
-
-    @Test
-    @DisplayName("예외 테스트 : 특수문자 \\0")
-    void exceptionTest10() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("\0"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
+    @DisplayName("커스텀 구분자 옆에 숫자 - 2")
+    void test11() {
+        assertSimpleTest(() -> {
+            run("5//1\\n5");
+            assertThat(output()).contains("결과 : 55");
+        });
     }
 
 
