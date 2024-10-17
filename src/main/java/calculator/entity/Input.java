@@ -8,6 +8,10 @@ public class Input {
     protected final String value;
 
     public Input(String value) {
+        if (value == null) {
+            throw new IllegalArgumentException("Input value cannot be null.");
+        }
+
         this.value = value;
     }
 
