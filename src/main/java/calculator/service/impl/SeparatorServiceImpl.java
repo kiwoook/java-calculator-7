@@ -35,8 +35,6 @@ public class SeparatorServiceImpl implements SeparatorService {
         return separatorSet;
     }
 
-
-
     @Override
     public IndexQueue getAllCustomSepIdx(Input input) {
         IndexQueue idxQueue = new IndexQueue();
@@ -54,8 +52,6 @@ public class SeparatorServiceImpl implements SeparatorService {
 
         return idxQueue;
     }
-
-
 
     @Override
     public RefinedInput refineInput(Input input, IndexQueue idxQueue) {

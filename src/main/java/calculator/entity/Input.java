@@ -1,6 +1,5 @@
 package calculator.entity;
 
-
 import static calculator.utils.Constants.CUSTOM_SEPARATOR_LENGTH;
 
 public class Input {
