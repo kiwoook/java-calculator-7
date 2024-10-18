@@ -136,6 +136,32 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    @DisplayName("커스텀 구분자 옆에 숫자 - 3")
+    void test12() {
+        assertSimpleTest(() -> {
+            run("25//2\\n525");
+            assertThat(output()).contains("결과 : 60");
+        });
+    }
+
+    @Test
+    @DisplayName("커스텀 구분자가 특수문자")
+    void test13() {
+        assertSimpleTest(() -> {
+            run("1\b//\b\\n2\b3\b4");
+            assertThat(output()).contains("결과 : 10");
+        });
+    }
+
+    @Test
+    @DisplayName("커스텀 구분자가 특수문자 - 2")
+    void test14() {
+        assertSimpleTest(() -> {
+            run("1\t//\t\\n2\t3\t4");
+            assertThat(output()).contains("결과 : 10");
+        });
+    }
 
     @Override
     public void runMain() {
